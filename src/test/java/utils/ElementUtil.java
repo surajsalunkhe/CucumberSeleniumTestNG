@@ -269,7 +269,7 @@ public class ElementUtil {
 		select.selectByVisibleText(text);
 	}
 
-	public boolean isElementisDisplayed(By locator){
+	public boolean isElementDisplayed(By locator){
 		waitTillDisplay(locator,10);
 		boolean status=getElement(locator).isDisplayed();
 		return status;

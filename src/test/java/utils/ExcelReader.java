@@ -3,10 +3,7 @@ package utils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
@@ -250,5 +247,27 @@ public class ExcelReader {
 		}
 
 		return rowData;
+	}
+	public static List<Object[]> readExcelDataForLogin(String filePath) throws IOException {
+		List<Object[]> data = new ArrayList<>();
+		FileInputStream fileInputStream = new FileInputStream(filePath);
+		Workbook workbook = new XSSFWorkbook(fileInputStream);
+		Sheet sheet = workbook.getSheetAt(0); // Get the first sheet
+
+		Iterator<Row> rows = sheet.iterator();
+		rows.next(); // Skip header row
+		while (rows.hasNext()) {
+			Row row = rows.next();
+			String username = row.getCell(0).getStringCellValue();
+			String password = row.getCell(1).getStringCellValue();
+			String isLoginSuccessful = row.getCell(2).getStringCellValue();
+			String message = row.getCell(3).getStringCellValue();
+
+			data.add(new Object[]{username, password, isLoginSuccessful, message});
+		}
+
+		workbook.close();
+		fileInputStream.close();
+		return data;
 	}
 }
