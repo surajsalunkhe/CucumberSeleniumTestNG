@@ -22,8 +22,8 @@ node{
     }
     stage('Post Actions') {
         // Archive the generated test artifacts
-        echo "Archiving build artifacts..."
-        archiveArtifacts artifacts: 'target/**/*.jar', allowEmptyArchive: true
+        //echo "Archiving build artifacts..."
+        //archiveArtifacts artifacts: 'target/SeleniumCucumberTestNg-1.0-SNAPSHOT.jar', allowEmptyArchive: true
 
         // Send email notification based on the build result
         script {
