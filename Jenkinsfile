@@ -20,5 +20,29 @@ node{
                 keepAll: true
             ])
     }
+    stage('Post Actions') {
+        // Archive the generated test artifacts
+        echo "Archiving build artifacts..."
+        archiveArtifacts artifacts: 'target/**/*.jar', allowEmptyArchive: true
+
+        // Send email notification based on the build result
+        script {
+            def recipients = 'suraj_shivajisalunkhe@epam.com,suraj@technosnoop.com'  // Add your recipient email addresses separated by commas
+
+            if (currentBuild.result == 'SUCCESS') {
+                emailext(
+                    to: recipients,
+                    subject: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                    body: "The build was successful. Check the report at ${env.BUILD_URL}"
+                )
+            } else {
+                emailext(
+                    to: recipients,
+                    subject: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                    body: "The build failed. Check the details at ${env.BUILD_URL}"
+                )
+            }
+        }
+    }
 
 }
