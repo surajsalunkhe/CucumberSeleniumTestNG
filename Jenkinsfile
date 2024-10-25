@@ -10,7 +10,7 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 // Cloning the repo
-                git branch: 'develop', url: 'https://git.epam.com/suraj_shivajisalunkhe/testautomationproject'
+                git branch: 'main', url: 'https://git.epam.com/suraj_shivajisalunkhe/testautomationproject'
             }
         }
 
@@ -43,30 +43,6 @@ pipeline {
                     reportFiles: 'index.html', // Adjust to your report file
                     keepAll: true
                 ])
-            }
-        }
-    }
-
-    post {
-        always {
-            // Archive test results
-            archiveArtifacts artifacts: '**/target/*.jar', allowEmptyArchive: true
-
-            // Send email notifications based on build status
-            script {
-                if (currentBuild.result == 'SUCCESS') {
-                    emailext(
-                        subject: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-                        body: "The build succeeded. Check the report at ${env.BUILD_URL}",
-                        recipientProviders: [[$class: 'DevelopersRecipientProvider']]
-                    )
-                } else {
-                    emailext(
-                        subject: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-                        body: "The build failed. Check the details at ${env.BUILD_URL}",
-                        recipientProviders: [[$class: 'DevelopersRecipientProvider']]
-                    )
-                }
             }
         }
     }
