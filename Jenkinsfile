@@ -16,20 +16,28 @@ node{
             publishHTML([
                 reportName: 'Extent PDF Report',
                 reportDir: 'test-output/PdfReport', // Adjust directory if necessary
-                reportFiles: 'TestExecutionResult.pdf', // Extent Report
+                reportFiles: 'TestExecutionResult.pdf', // Extent PDF Report
+                keepAll: true
+            ])
+            //publishing html report
+            echo "Publishing Extent HTML Report..."
+            publishHTML([
+                reportName: 'Extent HTML Report',
+                reportDir: 'test-output/HtmlReport', // Adjust directory if necessary
+                reportFiles: 'TestExecutionResultReport.html', // Extent HTML Report
                 keepAll: true
             ])
     }
     stage('Post Actions') {
         // Archive the generated test artifacts
-        //echo "Archiving build artifacts..."
-        //archiveArtifacts artifacts: 'target/SeleniumCucumberTestNg-1.0-SNAPSHOT.jar', allowEmptyArchive: true
+        echo "Archiving build artifacts..."
+        archiveArtifacts artifacts: 'target/SeleniumCucumberTestNg-1.0-SNAPSHOT.jar', allowEmptyArchive: true
 
         // Send email notification based on the build result
         script {
             def recipients = 'suraj_shivajisalunkhe@epam.com'  // Add your recipient email addresses separated by commas
 
-            if (currentBuild.result == 'SUCCESS') {
+            if (currentBuild.result == 'SUCCESS' ||currentBuild.result == null) {
                 emailext(
                     to: recipients,
                     subject: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
