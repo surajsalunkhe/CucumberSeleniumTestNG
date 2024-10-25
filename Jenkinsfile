@@ -33,17 +33,5 @@ pipeline {
                 }
             }
         }
-
-        stage('Publish Report') {
-            steps {
-                // Generate HTML reports if configured
-                publishHTML([
-                    reportName: 'Test Report',
-                    reportDir: 'target/surefire-reports',
-                    reportFiles: 'index.html', // Adjust to your report file
-                    keepAll: true
-                ])
-            }
-        }
     }
 }
