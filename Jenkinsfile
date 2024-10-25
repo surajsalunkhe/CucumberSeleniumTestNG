@@ -27,7 +27,7 @@ node{
 
         // Send email notification based on the build result
         script {
-            def recipients = 'suraj_shivajisalunkhe@epam.com,suraj@technosnoop.com'  // Add your recipient email addresses separated by commas
+            def recipients = 'suraj_shivajisalunkhe@epam.com'  // Add your recipient email addresses separated by commas
 
             if (currentBuild.result == 'SUCCESS') {
                 emailext(
