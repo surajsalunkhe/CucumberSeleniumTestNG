@@ -10,4 +10,15 @@ node{
          echo "Running tests..."
          bat "mvn test"
     }
+    stage('Publish Test Results') {
+            // Publish TestNG results
+            echo "Publishing Extent Report..."
+            publishHTML([
+                reportName: 'Extent Report',
+                reportDir: 'test-output/PdfReport', // Adjust directory if necessary
+                reportFiles: 'TestExecutionResult.pdf', // Extent Report
+                keepAll: true
+            ])
+    }
+
 }
