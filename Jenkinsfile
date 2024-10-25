@@ -10,7 +10,7 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 // Cloning the repo
-                git branch: 'main', url: 'https://git.epam.com/suraj_shivajisalunkhe/testautomationproject'
+                git branch: 'develop', url: 'https://git.epam.com/suraj_shivajisalunkhe/testautomationproject'
             }
         }
 
