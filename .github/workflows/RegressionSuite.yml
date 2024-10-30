@@ -5,7 +5,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: '*/20 * * * *'  # Runs every 20 minutes; adjust as needed
+    - cron: '0 * * * *'  # Runs every 20 minutes; adjust as needed
 
 jobs:
   build:
