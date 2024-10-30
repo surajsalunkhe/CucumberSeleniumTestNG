@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    runs-on: [self-hosted, GithubActionRunner, TestRunner]  # Specify self-hosted runner with labels
+    runs-on: [self-hosted,TestRunner]  # Specify self-hosted runner with labels
 
     steps:
       - name: Checkout code
