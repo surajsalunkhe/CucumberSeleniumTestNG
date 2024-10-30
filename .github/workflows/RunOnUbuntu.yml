@@ -32,6 +32,12 @@ jobs:
           echo "Maven version:"
           mvn -v
 
+      - name: Check Browser Versions
+        run: |
+          google-chrome --version
+          firefox --version
+          microsoft-edge --version || echo "Microsoft Edge not installed"
+
       - name: Clean the build and Run tests
         run: mvn clean test
 
