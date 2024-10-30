@@ -66,6 +66,11 @@ public class DriverManager {
                 driver=new SafariDriver();
                 break;
             case "edge":
+                EdgeOptions edgeOptions = new EdgeOptions();
+                edgeOptions.addArguments("--headless");  // Run Edge in headless mode
+                edgeOptions.addArguments("--no-sandbox");  // Bypass the sandbox
+                edgeOptions.addArguments("--disable-dev-shm-usage");  // Overcome limited resource problems
+                edgeOptions.addArguments("--remote-debugging-port=9222");  // Allow remote debugging
                 WebDriverManager.edgedriver().setup();
                 /*Map<String, Object> edgeprefs = new HashMap<String, Object>();
                 edgeprefs.put("download.default_directory",downloadPath);
@@ -73,7 +78,7 @@ public class DriverManager {
                 edgeprefs.put("plugins.always_open_pdf_externally", true);
                 EdgeOptions op=new EdgeOptions();
                 op.setExperimentalOption("prefs", edgeprefs);*/
-                driver=new EdgeDriver();
+                driver=new EdgeDriver(edgeOptions);
                 break;
             default:
                 throw new IllegalArgumentException("Unsupported browser: " + browser);
