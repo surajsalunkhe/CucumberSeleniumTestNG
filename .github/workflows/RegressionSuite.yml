@@ -1,0 +1,42 @@
+name: Scheduled Regression Suite
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '*/20 * * * *'  # Customize as needed
+
+jobs:
+  build:
+    runs-on: self-hosted
+    labels: [GithubActionRunner, TestRunner]  # Specify your self-hosted runner labels
+
+    env:
+      JAVA_HOME: ${{ secrets.JAVA_HOME }}     # Set this in your repository or organization secrets
+      MAVEN_HOME: ${{ secrets.MAVEN_HOME }}   # Set this in your repository or organization secrets
+      PATH: ${{ secrets.JAVA_HOME }}/bin:${{ secrets.MAVEN_HOME }}/bin:${{ env.PATH }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Verify Java and Maven versions
+        run: |
+          echo "Java version:"
+          java -version
+          echo "Maven version:"
+          mvn -v
+
+      - name: Clean Build Project
+        run: mvn clean
+
+      - name: Run tests
+        run: mvn test
+
+      - name: Archive Test Reports
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-reports
+          path: target/surefire-reports/
