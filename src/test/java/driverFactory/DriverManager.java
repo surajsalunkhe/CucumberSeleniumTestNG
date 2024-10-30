@@ -19,6 +19,7 @@ import static utils.Constants.DRIVER_FILE_PATH;
 public class DriverManager {
     private static ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
     private static String  downloadPath = System.getProperty("user.dir")+ "\\DownloadedReports\\";
+    String driverPath = System.getProperty("user.dir") + "/src/test/resources/SeleniumDrivers/chromedriver";
     public WebDriver getDriver() {
         return webDriver.get();
     }
@@ -28,10 +29,12 @@ public class DriverManager {
             case "chrome":
                 System.out.println("Os version="+System.getProperty("os.name"));
                 if(System.getProperty("os.name").contains("linux")){
-                    System.setProperty("webdriver.chrome.driver", DRIVER_FILE_PATH+"\\chromedriver");
+                    System.out.println("Inside linux driver setup");
+                    System.setProperty("webdriver.chrome.driver", driverPath);
                     driver = new ChromeDriver();
 
                 }else{
+                    System.out.println("Inside Windows driver setup");
                     WebDriverManager.chromedriver().setup();
                     //WebDriverManager.chromedriver().driverVersion("130.0.6723.58").setup();
                     /*ChromeOptions chromeOptions = new ChromeOptions();
