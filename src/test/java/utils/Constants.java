@@ -16,6 +16,7 @@ public class Constants {
 	public static final String TEST_DATA_FILE_PATH=System.getProperty("user.dir")+"\\src\\test\\resources\\environment\\";
 	public static final String DOWNLOAD_PATH="\\DownloadedReports\\";
 	public static final String DATA_FEED_PATH=System.getProperty("user.dir")+"\\src\\test\\resources\\datafiles\\feeds\\";
+	public static final String DRIVER_FILE_PATH=System.getProperty("user.dir")+"\\src\\test\\resources\\SeleniumDrivers";
 
 
 }

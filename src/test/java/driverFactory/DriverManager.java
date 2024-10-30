@@ -14,6 +14,8 @@ import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
+import static utils.Constants.DRIVER_FILE_PATH;
+
 public class DriverManager {
     private static ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
     private static String  downloadPath = System.getProperty("user.dir")+ "\\DownloadedReports\\";
@@ -24,15 +26,23 @@ public class DriverManager {
         WebDriver driver = null;
         switch (browser.toLowerCase()) {
             case "chrome":
-                WebDriverManager.chromedriver().setup();
-                //WebDriverManager.chromedriver().driverVersion("130.0.6723.58").setup();
-                /*ChromeOptions chromeOptions = new ChromeOptions();
-                Map<String, Object> prefs = new HashMap<String, Object>();
-                prefs.put("download.default_directory", downloadPath);
-                prefs.put("download.prompt_for_download", false);
-                prefs.put("plugins.always_open_pdf_externally", true);
-                chromeOptions.setExperimentalOption("prefs", prefs);*/
-                driver = new ChromeDriver();
+                System.out.println("Os version="+System.getProperty("os.name"));
+                if(System.getProperty("os.name").contains("linux")){
+                    System.setProperty("webdriver.chrome.driver", DRIVER_FILE_PATH+"\\chromedriver");
+                    driver = new ChromeDriver();
+
+                }else{
+                    WebDriverManager.chromedriver().setup();
+                    //WebDriverManager.chromedriver().driverVersion("130.0.6723.58").setup();
+                    /*ChromeOptions chromeOptions = new ChromeOptions();
+                    Map<String, Object> prefs = new HashMap<String, Object>();
+                    prefs.put("download.default_directory", downloadPath);
+                    prefs.put("download.prompt_for_download", false);
+                    prefs.put("plugins.always_open_pdf_externally", true);
+                    chromeOptions.setExperimentalOption("prefs", prefs);*/
+                    driver = new ChromeDriver();
+                }
+
                 break;
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
