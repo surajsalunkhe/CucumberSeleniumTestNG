@@ -28,7 +28,7 @@ public class DriverManager {
         switch (browser.toLowerCase()) {
             case "chrome":
                 System.out.println("Os version="+System.getProperty("os.name"));
-                if(System.getProperty("os.name").contains("linux")){
+                if(System.getProperty("os.name").contains("Linux")){
                     System.out.println("Inside linux driver setup");
                     System.setProperty("webdriver.chrome.driver", driverPath);
                     driver = new ChromeDriver();
