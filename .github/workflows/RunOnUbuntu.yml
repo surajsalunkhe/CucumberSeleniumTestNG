@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         environment: [QA, UAT]  # Different environments
-        browser: [chrome, edge]  # Supported browsers
+        browser: [edge]  # Supported browsers
 
     steps:
       - name: Checkout code
@@ -31,22 +31,8 @@ jobs:
 
       - name: Install Compatible Browser Versions
         run: |
-          # Install Google Chrome version 93
-          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get -f install
-          sudo apt-get remove google-chrome-stable
-          wget https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_93.0.4577.63-1_amd64.deb
-          sudo dpkg -i google-chrome-stable_93.0.4577.63-1_amd64.deb || sudo apt-get -f install
-
-          # Install Firefox version 92
-          wget -O firefox.tar.bz2 "https://download.mozilla.org/?product=firefox-92.0&os=linux64&lang=en-US"
-          tar xjf firefox.tar.bz2
-          sudo mv firefox /opt/firefox92
-          sudo ln -s /opt/firefox92/firefox /usr/bin/firefox
-
-          # Install Microsoft Edge version 93
-          wget https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-dev/microsoft-edge-dev_93.0.961.52-1_amd64.deb
-          sudo dpkg -i microsoft-edge-dev_93.0.961.52-1_amd64.deb || sudo apt-get -f install
+          wget https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-dev/microsoft-edge-dev_129.0.2792.89-1_amd64.deb
+          sudo dpkg -i microsoft-edge-dev_129.0.2792.89-1_amd64.deb || sudo apt-get -f install
 
       - name: Verify Java and Maven versions
         run: |
