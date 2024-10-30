@@ -1,7 +1,5 @@
 Feature: User Login Functionality using Test Data sheet
 
-Feature: User Login Functionality
-
   Background:
     Given User has test data from Excel
 
