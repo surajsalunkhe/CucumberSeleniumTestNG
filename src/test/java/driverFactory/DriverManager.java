@@ -30,8 +30,13 @@ public class DriverManager {
                 System.out.println("Os version="+System.getProperty("os.name"));
                 if(System.getProperty("os.name").contains("Linux")){
                     System.out.println("Inside linux driver setup");
+                    ChromeOptions options = new ChromeOptions();
+                    options.addArguments("--headless");
+                    options.addArguments("--no-sandbox");
+                    options.addArguments("--disable-dev-shm-usage");
+                    options.addArguments("--remote-debugging-port=9222");
                     System.setProperty("webdriver.chrome.driver", driverPath);
-                    driver = new ChromeDriver();
+                    driver = new ChromeDriver(options);
 
                 }else{
                     System.out.println("Inside Windows driver setup");
