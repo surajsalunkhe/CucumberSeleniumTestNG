@@ -11,12 +11,6 @@ jobs:
   build:
     runs-on: self-hosted
     labels: [GithubActionRunner, TestRunner]  # Specify your self-hosted runner labels
-
-    env:
-      JAVA_HOME: ${{ secrets.JAVA_HOME }}     # Set this in your repository or organization secrets
-      MAVEN_HOME: ${{ secrets.MAVEN_HOME }}   # Set this in your repository or organization secrets
-      PATH: ${{ secrets.JAVA_HOME }}/bin:${{ secrets.MAVEN_HOME }}/bin:${{ env.PATH }}
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
