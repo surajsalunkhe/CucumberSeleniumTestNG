@@ -45,12 +45,18 @@ jobs:
           firefox --version
           microsoft-edge --version || echo "Microsoft Edge not installed"
 
-      - name: Clean the build and Run tests
-        run: mvn clean test -Denvironment=${{ matrix.environment }} -Dbrowser=${{ matrix.browser }}
+      - name: Run tests and generate report
+        env:
+          ENVIRONMENT: ${{ matrix.environment }}
+          BROWSER: ${{ matrix.browser }}
+        run: |
+            mvn clean test -Denv=${{ matrix.environment }} -Dbrowser=${{ matrix.browser }}
+            # Specify report output path with environment and browser
+            mv target/cucumber-reports.html target/cucumber-reports-${{ matrix.environment }}-${{ matrix.browser }}.html
 
-      - name: Archive Test Reports
+      - name: Archive Environment-Specific Test Report
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: test-reports
-          path: target/cucumber-reports.html
+            name: "test-report-${{ matrix.environment }}-${{ matrix.browser }}"
+            path: "target/cucumber-reports-${{ matrix.environment }}-${{ matrix.browser }}.html"
