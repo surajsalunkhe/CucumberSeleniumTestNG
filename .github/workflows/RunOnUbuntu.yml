@@ -31,7 +31,7 @@ jobs:
 
       - name: Install Compatible Browser Versions
         run: |
-          wget https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-dev/microsoft-edge-dev_129.0.2792.89-1_amd64.deb
+          wget https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-dev/microsoft-edge-dev_128.0.2739.1-1_amd64.deb 
           sudo dpkg -i microsoft-edge-dev_129.0.2792.89-1_amd64.deb || sudo apt-get -f install
 
       - name: Verify Java and Maven versions
