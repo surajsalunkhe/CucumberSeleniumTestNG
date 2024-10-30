@@ -5,12 +5,12 @@ on:
     branches:
       - main
   schedule:
-    - cron: '*/20 * * * *'  # Customize as needed
+    - cron: '*/20 * * * *'  # Runs every 20 minutes, adjust as needed
 
 jobs:
   build:
-    runs-on: self-hosted
-    labels: [GithubActionRunner, TestRunner]  # Specify your self-hosted runner labels
+    runs-on: [self-hosted, GithubActionRunner, TestRunner]  # Specify self-hosted runner with labels
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
