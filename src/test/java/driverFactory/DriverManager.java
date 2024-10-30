@@ -24,7 +24,8 @@ public class DriverManager {
         WebDriver driver = null;
         switch (browser.toLowerCase()) {
             case "chrome":
-                WebDriverManager.chromedriver().setup();
+                //WebDriverManager.chromedriver().setup();
+                WebDriverManager.chromedriver().driverVersion("130.0.6723.58").setup();
                 /*ChromeOptions chromeOptions = new ChromeOptions();
                 Map<String, Object> prefs = new HashMap<String, Object>();
                 prefs.put("download.default_directory", downloadPath);
