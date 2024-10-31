@@ -28,17 +28,16 @@ public class DriverManager {
         switch (browser.toLowerCase()) {
             case "chrome":
                 System.out.println("Os version="+System.getProperty("os.name"));
-//                if(System.getProperty("os.name").contains("Linux")){
-//                    System.out.println("Inside linux driver setup");
-//                    ChromeOptions options = new ChromeOptions();
-//                    options.addArguments("--headless");
-//                    options.addArguments("--no-sandbox");
-//                    options.addArguments("--disable-dev-shm-usage");
-//                    options.addArguments("--remote-debugging-port=9222");
-//                    System.setProperty("webdriver.chrome.driver", driverPath);
-//                    driver = new ChromeDriver(options);
-//
-//                }else{
+                if(System.getProperty("os.name").contains("Linux")){
+                    System.out.println("Inside linux driver setup");
+                    ChromeOptions options = new ChromeOptions();
+                    options.addArguments("--headless");
+                    options.addArguments("--no-sandbox");
+                    options.addArguments("--disable-dev-shm-usage");
+                    options.addArguments("--remote-debugging-port=9222");
+                    System.setProperty("webdriver.chrome.driver", driverPath);
+                    driver = new ChromeDriver(options);
+                }else{
                     WebDriverManager.chromedriver().setup();
                     ChromeOptions chromeOptions = new ChromeOptions();
                     chromeOptions.addArguments("--headless");
@@ -53,7 +52,7 @@ public class DriverManager {
                     prefs.put("plugins.always_open_pdf_externally", true);
                     chromeOptions.setExperimentalOption("prefs", prefs);*/
                     driver = new ChromeDriver();
-                //}
+                }
 
                 break;
             case "firefox":

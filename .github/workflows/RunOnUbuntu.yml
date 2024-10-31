@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         environment: [QA, UAT]  # Different environments
-        browser: [chrome,edge]  # Supported browsers
+        browser: [chrome,edge,firefox]  # Supported browsers
 
     steps:
       - name: Checkout code
