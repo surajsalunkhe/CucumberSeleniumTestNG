@@ -1,4 +1,4 @@
-name: Scheduled Regression Suite
+name: Github Linux TC Runner
 
 on:
   push:
