@@ -78,3 +78,5 @@ nb-configuration.xml
 ########
 logs/
 test-output/
+.github/extensions/
+.github/agents/STLC_** 

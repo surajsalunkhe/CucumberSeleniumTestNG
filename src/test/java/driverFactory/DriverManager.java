@@ -114,7 +114,7 @@ public class DriverManager {
     public static String returnBrowserName(){
         String browserName=System.getProperty("browser");
         if(browserName==null || browserName.isEmpty()){
-            browserName="edge";
+            browserName="chrome";
         }
         return browserName;
     }

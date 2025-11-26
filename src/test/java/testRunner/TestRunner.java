@@ -21,13 +21,13 @@ import static utils.Constants.TEST_RESULT_JSON;
 
 @CucumberOptions(
 		features = "src/test/resources/features",
-		glue = {"stepDef","appHooks"},
+		glue = {"stepDef.common", "stepDef.login", "stepDef.registration", "appHooks"},
 		plugin = {"pretty",
 				"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
 				"json:target/json-report/cucumber.json",
 				"html:target/cucumber-reports.html",
 				"rerun:target/failedrerun.txt"},
-		tags = "@QA"
+		tags = "@SmokeTest"
 )
 public class TestRunner extends AbstractTestNGCucumberTests {
 	Logger log = LogManager.getLogger(TestRunner.class);

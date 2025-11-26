@@ -1,6 +1,6 @@
 Feature: User Login Functionality using Test Data sheet
 
-  @QA @UAT
+  @QA @UAT @SmokeTest
   Scenario: Navigate to the Technosnoop.com site
     Given User launch the browser
     And User navigates to URL "Technosnoop"

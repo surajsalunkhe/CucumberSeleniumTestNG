@@ -41,6 +41,23 @@ public class LoginPage {
         elementutil.doSendKeys(loginPassword,password);
         elementutil.doClick(loginButton);
     }
+    
+    // Individual field entry methods for granular step definitions
+    public void enterUsername(String userName) {
+        logger.info("Entering username: {}", userName);
+        elementutil.doSendKeys(loginUsername, userName);
+    }
+    
+    public void enterPassword(String password) {
+        logger.info("Entering password");
+        elementutil.doSendKeys(loginPassword, password);
+    }
+    
+    public void clickLoginButton() {
+        logger.info("Clicking login button");
+        elementutil.doClick(loginButton);
+    }
+    
     public void verifyTheMessage(String isLoginSuccess, String expectedMessage){
         String messageDisplayed;
         if(isLoginSuccess.equalsIgnoreCase("Y")){
@@ -51,6 +68,7 @@ public class LoginPage {
         }
         Assert.assertEquals(messageDisplayed,expectedMessage,"Verification of message failed");
     }
+    
     public void verifyTheMessageFromData(String isLoginSuccess, String expectedMessage){
         String messageDisplayed;
         if(isLoginSuccess.equalsIgnoreCase("Y")){
@@ -62,6 +80,18 @@ public class LoginPage {
         Assert.assertEquals(messageDisplayed,expectedMessage,"Verification of message failed");
         String url= PropertiesFileManager.getPropertyValue("TestLoginURL");
         driver.navigate().to(url);
+    }
+    
+    public void verifySuccessMessage(String expectedMessage) {
+        logger.info("Verifying success message");
+        elementutil.waitForElementToBePresent(loginSuccessMessage);
+        String actualMessage = elementutil.getTextOfElement(loginSuccessMessage);
+        Assert.assertEquals(actualMessage, expectedMessage, "Success message verification failed");
+    }
+    
+    public void verifyOnLoginPage() {
+        logger.info("Verifying user is on login page");
+        Assert.assertTrue(elementutil.isElementDisplayed(loginUsername), "Login page should be displayed");
     }
     public boolean isLogoutButtonDisplayed(){
         return elementutil.isElementDisplayed(logoutButton);

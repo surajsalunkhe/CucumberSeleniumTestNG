@@ -5,7 +5,7 @@ import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
         features = { "@target/failedrerun.txt" },
-        glue = {"stepDef","appHooks"}, // path of step definition
+        glue = {"stepDef.common", "stepDef.login", "stepDef.registration", "appHooks"}, // path of step definition
         plugin = {"pretty",
                 "rerun:target/failedrerun.txt"},
         monochrome =true
